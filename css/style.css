@@ -1,0 +1,702 @@
+
+body{
+	background-color: #333;
+}
+
+.wrapper {
+	position: relative;
+	overflow: hidden;
+	min-height: 100%;
+}
+
+.practice{
+	padding: 20px;
+}
+
+.practice__container{
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.practice__block{
+	margin-bottom: 100px;
+}
+
+
+/* Анімація з блоком */
+
+.block__item {
+	width: 150px;
+	height: 150px;
+	background-color: rgb(129, 188, 87);
+	text-align: left;
+	transition: width 0.5s cubic-bezier(0,2.36,0,2.55) 0s, height 1s cubic-bezier(0,2.36,0,2.55) 0.5s, transform 2s cubic-bezier(0,2.36,0,2.55) 1.5s;
+	
+}
+
+.block:hover .block__item{
+	width: 200px;
+	transform: translate(10%, 10%);
+	background-color: rgb(196, 50, 50);
+	text-align: center;
+	height: 200px;
+
+}
+
+/* Анімація з посиланням */
+
+.link {
+	color: white;
+	font-size: 25px;
+	font-weight: 700;
+	transition: all 0.3s ease 0s;
+	position: relative;
+	padding-left: 25px;
+}
+
+.link::before{
+	content: "";
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: green;
+	animation-name: link-rotate;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.practice__link--margine{
+	margin-bottom: 50px;
+}
+
+
+@keyframes link-rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+
+.link::after{
+	content: "";
+	position: absolute;
+	bottom: 0;
+	width: 0%;
+	left: 0;
+	height: 1px;
+	background-color: red;
+	transition: width 0.3s ease 0s;
+}
+.link:hover{
+	color: green;
+	
+}
+
+.link:hover::before{
+	animation-play-state: paused;
+}
+
+
+.link:hover::after{
+	width: 100%;
+}
+
+/* Анімація з фотокарткою */
+
+.image{
+	width: 400px;
+	overflow: hidden;
+	position: relative;
+}
+
+.image:before{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	content: "";
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 2;
+	transition: transform 0.8s ease 0s;
+	transform: translate(-100%, 0px);
+}
+.image img{
+	max-width: 100%;
+	transition: transform 0.8s ease 0s;
+}
+.image:hover img{
+	transform: scale(1.1);
+}
+
+.image:hover::before{
+	transform: translate(0px, 0px);
+}
+.image__item{
+	margin-bottom: 100px;
+}
+
+
+/* Анімація появи тексту */
+
+.practice__text{
+	color: white;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.title {
+	font-weight: 700;
+	font-size: 40px;
+	animation: title 1s ease forwards;
+	transform: translate(0px, 50%);
+	opacity: 0;
+}
+
+@keyframes title {
+	0%{
+		transform: translate(0px, 50%);
+		opacity: 0;
+	}
+	100%{
+		transform: translate(0px,0%);
+		opacity: 1;
+	}
+	
+}
+.title:not(:last-child){
+	margin-bottom: 20px;
+}
+.sub-title {
+	font-size: 24px;
+	animation: title 1s ease 0.5s forwards;
+	transform: translate(0px, 50%);
+	opacity: 0;
+}
+
+.sub-title:not(:last-child){
+	margin-bottom: 15px;
+}
+.text {
+	line-height: 1.5;
+	transform: translate(0px, 50%);
+	opacity: 0;
+	animation: title 1s ease 1s forwards;
+}
+
+
+/* Блок, що зупиняється */
+
+.block-animation__item {
+	width: 150px;
+	height: 150px;
+	background-color: #77608d;
+	text-align: center;
+	color: white;
+	font-size: 15px;
+	padding: 5px;
+	padding-bottom: 20px;
+	animation:  rotate-block 5s linear infinite alternate running 2s forwards; 
+}
+
+.block-animation__item:hover{
+	animation-play-state: paused;
+
+}
+
+
+@keyframes rotate-block {
+	0% {
+		transform: translate(0,0);
+		background-color: #fff;
+	}
+	100% {
+		transform: translate(500px, 0);
+		background-color: brown;
+	}
+}
+
+/* Машина, що виїждає */
+
+.car {
+	width: 200px;
+	height: 100px;
+	background-color:brown;
+	border-radius: 50px 50px 0 0;
+	position: relative;
+	transform: translate(-300%);
+	animation: car-ride 5s linear 3s forwards,
+	car-ride-2 8s linear 11s forwards;
+}
+
+
+@keyframes car-ride {
+	0%{
+		transform: translate(-300%);
+	}
+	100%{
+		transform: translate(200px);
+	}
+}
+
+@keyframes car-ride-2 {
+	0%{
+		transform: translate(200px, 0);
+	}
+	100%{
+		transform: translate(2000px, 0);
+	}
+}
+
+
+.car__weels {
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+	left: 0;
+	
+
+}
+.car__wheel {
+	width: 40px;
+	height: 40px;
+	background-color: grey;
+	position: absolute;
+	border-radius: 50%;
+	outline: 5px dashed black;
+	animation: wheels 5s linear 3s forwards,
+	wheels-2 5s linear 11s forwards;
+}
+
+.car__wheel:first-child{
+	left: 0;
+}
+
+.car__wheel:last-child{
+	right: 0;
+}
+
+@keyframes wheels {
+	0%{
+		transform: rotate(0deg);
+		
+	}
+	100%{
+		transform: rotate(360deg);
+		
+	}
+}
+
+@keyframes wheels-2 {
+	0%{
+		transform: rotate(0deg);
+		
+	}
+	100%{
+		transform: rotate(360deg);
+		
+	}
+}
+
+/* Маятник Ньютона */
+
+.newton {
+	width: 400px;
+	margin: 0 auto;
+	border-top: 10px solid white;
+	position: relative;
+	height: 300px;
+}
+.newton__item {
+	position: absolute;
+	top: 0;
+	width: 25%;
+	height: 100%;
+	transform-origin: top;
+}
+.newton__item::after{
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 110px;
+	height: 110px;
+	background: url("../img/pngwing.com.png") 0 0 / contain no-repeat;
+	border-radius: 50%;
+}
+
+.newton__item::before{
+	content: "";
+	position: absolute;
+	width: 3px;
+	height: 90%;
+	background-color: rgba(255, 255, 255, 0.715);
+	left: 50%;
+	transform: translate(-50%, 0px);
+
+}
+.newton__item:nth-child(1){
+	left: 0;
+	
+	animation: left-item 2s infinite ease-in-out alternate-reverse;
+}
+.newton__item:nth-child(2){
+	left: 25%;
+}
+
+.newton__item:nth-child(3){
+	left: 50%;
+}
+.newton__item:nth-child(4){
+	right: 0;
+	animation: right-item 2s infinite ease-in-out 1s alternate;
+}
+
+@keyframes left-item {
+
+	0%{
+		transform: rotate(35deg);
+	}
+	20%{
+		transform: rotate(0deg);
+	}
+	80%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(35deg);
+
+	}
+	
+}
+
+@keyframes right-item {
+
+	0%{
+		transform: rotate(-35deg);
+	}
+	20%{
+		transform: rotate(0deg);
+	}
+	80%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(-35deg);
+
+	}
+	
+}
+
+/* Пейзаж на морі, анімація */
+
+.sunrise {
+	width: 600px;
+	height: 400px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	animation: sky-day 30s linear infinite normal running;
+}
+
+@keyframes sky-day {
+
+	0%{
+		background-color: rgb(15, 72, 91);
+	}
+
+	20%{
+		background-color: rgb(25, 83, 102);
+	}
+
+	50% {
+		background-color: rgb(16, 187, 244);
+	}
+
+	70% {
+		background-color: rgb(14, 126, 163);
+	}
+
+	90% {
+		background-color: rgb(33, 87, 105);
+	}
+
+	100%{
+		background-color: rgb(55, 71, 75);
+	}
+	
+}
+
+.sunrise__stars{
+   position: absolute;
+   top: 0;
+   left: 0;
+}
+
+.sunrise__stars img{
+	max-width: 100%;
+	animation: sky-stars 30s linear infinite;
+}
+
+@keyframes sky-stars {
+
+	0%{
+		opacity: 1;
+		transform: rotate(-20deg);
+	}
+
+	20%{
+		opacity: 0.5;
+	}
+
+	50% {
+		opacity: 0;
+	}
+
+	70% {
+		opacity: 0;
+	}
+	90% {
+		opacity: 0.5;
+		transform: rotate(-15deg);
+	}
+	
+
+	100%{
+		opacity: 0.9;
+		transform: rotate(-17deg);
+	}
+	
+	
+}
+
+.practice__sunrise {
+	margin-bottom: 500px;
+}
+
+.sunrise__sea {
+	position: absolute;
+	bottom: 0;
+	z-index: 5;
+	/* width: 600px; */
+	/* margin: 0 auto; */
+}
+
+.sunrise__sea img {
+	max-width: 100%;
+	bottom: 0;
+	
+}
+
+.the-sun{
+	width: 600px;
+	height: 350px;
+	margin: 0 auto;
+	position: absolute;
+	z-index: 1;
+	bottom: -350px;
+}
+.the-sun__item{
+	position: absolute;
+	bottom: 0;
+	transform-origin: top right;
+	height: 100%;
+	animation: sun-rotate 30s linear infinite;
+}
+
+
+@keyframes sun-rotate {
+
+	0%{
+		transform: rotate(0);
+	}
+
+	20%{
+		transform: rotate(0);
+	}
+
+	50% {
+		transform: rotate(-150deg);
+	}
+
+	60% {
+		transform: rotate(-150deg);
+	}
+
+	70% {
+		transform: rotate(-270deg);
+	}
+	
+	100%{
+		transform: rotate(-360deg);
+	}
+	
+}
+
+.the-sun__item:nth-child(1)::after{
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100px;
+	height: 100px;
+	background: url('../img/sun2.png') 0 0 / contain no-repeat;
+}
+
+
+.the-sun__item:nth-child(2)::after{
+	content: "";
+	position: absolute;
+	top: -350px;
+	left: 0;
+	width: 100px;
+	height: 100px;
+	background: url('../img/moon.png') 0 0 / contain no-repeat;
+}
+
+
+
+
+.clouds {
+	width: 500px;
+	border-top: 5px solid rgba(255, 255, 255, 0);
+	margin: 0 auto;
+	position: relative;
+	height: 200px;
+	z-index: 4;
+	
+}
+
+.clouds__item {
+	position: absolute;
+	top: 0;
+	width: 10%;
+	height: 100%;
+	transform-origin: top;
+	
+}
+
+
+.clouds__item::after{
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 100px;
+	height: 70px;
+	background: url('../img/Daco_999504.png') 0 0 / contain no-repeat;
+	transform: translate(-50%, 0);
+	
+}
+
+.clouds__item::before{
+	content: "";
+	position: absolute;
+	width: 4px;
+	height: 100%;
+	background-color: rgb(147, 128, 128);
+	left: 50%;
+	transform: translate(-50%, 0px);
+	opacity: 0;
+
+}
+
+.clouds__item:nth-child(1){
+	left: 0;
+	animation: clouds 3s infinite ease-in-out alternate;
+	
+}
+.clouds__item:nth-child(2){
+	left: 10%;
+	animation: clouds 3.5s infinite ease-in-out alternate;
+}
+
+.clouds__item:nth-child(3){
+	left: 20%;
+	animation: clouds 5s infinite ease-in-out alternate;
+}
+
+.clouds__item:nth-child(3)::before{
+	height: 40%;
+}
+
+.clouds__item:nth-child(3):after{
+	top: 40%;
+}
+
+
+
+.clouds__item:nth-child(4){
+	left: 30%;
+	animation: clouds 4s infinite ease-in-out alternate;
+}
+
+.clouds__item:nth-child(5){
+	left: 40%;
+	animation: clouds 3.1s infinite ease-in-out alternate;
+}
+
+
+.clouds__item:nth-child(5)::before{
+	height: 20%;
+}
+
+.clouds__item:nth-child(5):after{
+	top: 20%;
+}
+
+.clouds__item:nth-child(6){
+	left: 50%;
+	animation: clouds 2.5s infinite ease-in-out alternate;
+}
+
+.clouds__item:nth-child(7){
+	left: 60%;
+	animation: clouds 5s infinite ease-in-out alternate;
+}
+
+.clouds__item:nth-child(7)::before{
+	height: 30%;
+}
+
+.clouds__item:nth-child(7):after{
+	top: 30%;
+}
+
+.clouds__item:nth-child(8){
+	left: 70%;
+	animation: clouds 6s infinite ease-in-out alternate;
+}
+
+.clouds__item:nth-child(9){
+	left: 80%;
+	animation: clouds 4s infinite ease-in-out alternate;
+}
+
+.clouds__item:nth-child(9)::before{
+	height: 50%;
+}
+
+.clouds__item:nth-child(9):after{
+	top: 50%;
+}
+
+.clouds__item:nth-child(10){
+	right: 0;
+	animation: clouds 2.8s infinite ease-in-out alternate;
+	
+}
+
+@keyframes clouds {
+	0%{
+		transform: rotate(10deg);
+	}
+
+	100%{
+		transform: rotate(-10deg);
+	}
+	
+}
